@@ -21,6 +21,7 @@ import pheme.authentication
 logger = logging.getLogger(__name__)
 
 mimetypes.add_type('text/scss', '.scss')
+mimetypes.add_type("text/html", '.jinja2')
 
 
 def load_params(from_path: str = settings.PARAMETER_FILE_ADDRESS) -> Dict:
@@ -55,8 +56,8 @@ def __put(
         value = params
     else:
         value = func(request, params)
-    return Response(store(value, from_path=from_path))
-
+        (store(value, from_path=from_path))
+        return Response("Success")
 
 def __process_form_data(request: HttpRequest, data: Dict) -> Dict:
     for (key, value) in request.data.items():

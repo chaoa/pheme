@@ -18,6 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import dataclasses
 import rest_framework.renderers
+from django.http import JsonResponse
 from rest_framework.decorators import api_view, parser_classes, renderer_classes
 from rest_framework.response import Response
 from rest_framework.request import Request
@@ -71,7 +72,7 @@ def transform(request):
         "scanreport",
         dataclasses.asdict(scanreport.gvmd.transform(request.data)),
     )
-    return Response(name)
+    return JsonResponse({"id": name})
 
 
 @api_view(['POST'])
